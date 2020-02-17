@@ -1,0 +1,1399 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Aston Technologies Global View</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
+        <link rel="stylesheet" href="node_modules/bootstrap3/dist/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://editor.datatables.net/extensions/Editor/css/editor.dataTables.min.css">        
+    </head>
+    <body>
+        <div class="header">
+            <div style="width:calc(100% - 50px);-webkit-app-region: drag;margin-left:25px;">
+                <div class="title">
+                    <span>Aston Technologies Global View</span>
+                </div>
+            </div>
+            <div class="maxminclose-btn">
+                <button type="button" class="close" aria-label="Close" id="btn-close">
+                    <i class="fa fa-times"></i>
+                </button>                               
+            </div>
+        </div>
+        <!-- Classic tabs -->
+        <div class="menubar">
+            <ul class="nav nav-tabs">
+                <li class="nav-item active">
+                    <a class="nav-link active" href="#home" name="browse">Browse</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#menu1" name="vendor">Vendor Management</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#menu2" name="product">Product Management</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#menu3" name="brand">Brand Management</a>
+                </li>
+            </ul>
+            <div class="sub-menu">
+                <a href="#">Hide FILTER</a>
+            </div>
+        </div>
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div id="home" class="container tab-pane active"><br>
+                <table width='100%' height='100%' cellspacing=0 cellpadding=0>
+                    <tr style="height:35px;">
+                        <td width='8%' class="title">Vendor</td>
+                        <td width='25%'><input type="text" id="vendor" name="vendor" value="" onkeyup="filterFunction()"/></td>
+                        <td width='8%' class="title">Contact</td>
+                        <td width='25%'><input type="text" id="contact" name="contact" value="" onkeyup="filterFunction()"></td>
+                        <td width='8%' class="title">Email</td>
+                        <td><input type="text" id="email" name="email" value="" onkeyup="filterFunction()"/></td>
+                    </tr>
+                    <tr style="height:35px;">
+                        <td width='8%' class="title">Phone</td>
+                        <td width='25%'><input type="text" id="phone" name="phone" value="" onkeyup="filterFunction()"/></td>
+                        <td width='8%' class="title">Website</td>
+                        <td width='25%'><input type="text" id="website" name="website" value="" onkeyup="filterFunction()"/></td>
+                        <td width='8%' class="title">Note</td>
+                        <td><input type="text" id="note" name="note" value="" onkeyup="filterFunction()"/></td>
+                    </tr>
+                    <tr style="height:35px;">
+                        <td width='8%' class="title">Distributor</td>
+                        <td width='25%'>
+                            <select class="browser-default custom-select" id="distributor" onchange="filterFunction()">
+                                <option selected value="">Please select the distributor</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>                                
+                            </select>
+                        </td>
+                        <td width='8%' class="title">Brand</td>
+                        <td width='25%'>
+                            <select class="browser-default custom-select" id="brand" onchange="filterFunction()">
+                                <option selected value="">Please select the Brand</option>
+                            </select>
+                        </td>
+                        <td width='8%' class="title">Product</td>
+                        <td>
+                            <select class="browser-default custom-select" id="product" onchange="filterFunction()">
+                                <option selected value="">Please select the Product</option>                                
+                            </select>
+                        </td>
+                    </tr>                    
+                    <tr></tr>
+                </table>                
+            </div>
+            <div id="menu1" class="container tab-pane fade"><br>
+                <table width='100%' height='100%' cellspacing=0 cellpadding=0>
+                    <tr style="height:30px;">
+                        <td width='8%' class="title">Vendor</td>
+                        <td width='25%'><input type="text" id="vvendor" name="vvendor" onkeyup="filterVFunction()"/></td>
+                        <td width='8%' class="title">Contact</td>
+                        <td width='25%'><input type="text" id="vcontact" name="vcontact" onkeyup="filterVFunction()"></td>
+                        <td width='8%' class="title">Email</td>
+                        <td><input type="text" id="vemail" name="vemail" onkeyup="filterVFunction()"/></td>
+                    </tr>
+                    <tr style="height:30px;">
+                        <td width='8%' class="title">Phone</td>
+                        <td width='25%'><input type="text" id="vphone" name="vphone" onkeyup="filterVFunction()"/></td>
+                        <td width='8%' class="title">Website</td>
+                        <td width='25%'><input type="text" id="vwebsite" name="vwebsite" onkeyup="filterVFunction()"/></td>
+                        <td width='8%' class="title">Note</td>
+                        <td><input type="text" id="vnote" name="vnote" onkeyup="filterVFunction()"/></td>
+                    </tr>
+                    <tr style="height:30px;">
+                        <td width='8%' class="title">Distributor</td>
+                        <td width='25%'>
+                            <select class="browser-default custom-select" id="vdistributor" onchange="filterVFunction()">
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>                                
+                            </select>
+                        </td>
+                        <td width='8%' class="title">Brand</td>
+                        <td width='25%'>
+                            <select multiple data-style="bg-white rounded-pill px-4 py-3 shadow-sm " class="selectpicker w-100" id="vbrand" onchange="filterVFunction()" style="background: transparent; border-bottom: 1px solid #4c4c4c;">                                        
+                            </select><!-- End -->
+                            <!-- <select class="browser-default custom-select" id="vbrand" onchange="filterVFunction()">
+                                
+                            </select> -->
+                        </td>
+                        <td width='8%' class="title">Product</td>
+                        <td>
+                                                            
+                            <select multiple data-style="bg-white rounded-pill px-4 py-3 shadow-sm " class="selectpicker w-100" id="vproduct" onchange="filterVFunction()" style="background: transparent; border-bottom: 1px solid #4c4c4c;">                                        
+                            </select><!-- End -->
+                            
+
+                            <!-- <select class="browser-default custom-select" id="vproduct" onchange="filterVFunction()">
+                                
+                            </select> -->
+                        </td>
+                    </tr>
+                    <tr style="height:30px">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td style="text-align:right;">
+                            <button type="button" class="btn btn-success" id="vendor-btn">SAVE</button>
+                        </td>
+                    </tr>
+                    <tr></tr>
+                </table>  
+            </div>
+            <div id="menu2" class="container tab-pane fade"><br>
+                <table width='100%' height='100%' cellspacing=0 cellpadding=0>
+                    <tr style="height:45px;">
+                        <td width='8%' class="title">Product</td>
+                        <td width='60%'><input type="text" id="product-input" name="product-input" onkeyup="filterProductFunction()"></td>                        
+                        <td width='30%' style="text-align:left;">
+                            <button type="button" class="btn btn-success" id="product-btn">SAVE</button>
+                        </td>
+                    </tr>                    
+                    <tr></tr>
+                </table>
+            </div>
+            <div id="menu3" class="container tab-pane fade"><br>
+                <table width='100%' height='100%' cellspacing=0 cellpadding=0>
+                    <tr style="height:45px;">
+                        <td width='8%' class="title">Brand</td>
+                        <td width='60%'><input type="text" id="brand-input" name="brand-input" onkeyup="filterBrandFunction()"></td>                        
+                        <td width='30%' style="text-align:left;">
+                            <button type="button" class="btn btn-success" id="brand-btn">SAVE</button>
+                        </td>
+                    </tr>                    
+                    <tr></tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="table-data">
+            <div class="background">
+                <div class="tbheader">
+                    <button type="button" class="btn btn-success" id="email-btn">Email</button>
+                    <!-- <button type="button" class="btn btn-default">CLEAR</button> -->
+                </div>
+                <div class="resize_wrapper">
+                    <table id="data-table" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th style="width:20px!important;">No</th>
+                                <th style="width:10%;">Vendor</th>
+                                <th style="width:10%;">Contact</th>
+                                <th style="width:10%;">Email</th>
+                                <th style="width:10%;">Telephone</th>
+                                <th style="width:10%;">Website</th>
+                                <th style="width:10%;">Note</th>
+                                <th style="width:10%;">Distributor</th>
+                                <th style="width:10%;">Brand</th>
+                                <th>Product</th>
+                            </tr>
+                        </thead>
+                    </table>             
+                </div>
+            </div>
+        </div>
+        <div class="vendor-data">
+            <div class="background">
+                <div class="tbheader">                                        
+                    <button type="button" class="btn btn-danger" id="vendor-remove">Remove</button>
+                </div>
+                <div class="resize_wrapper">
+                    <table id="vendor-table" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th style="width:20px!important;">No</th>
+                                <th style="width:10%;">Vendor</th>
+                                <th style="width:10%;">Contact</th>
+                                <th style="width:10%;">Email</th>
+                                <th style="width:10%;">Telephone</th>
+                                <th style="width:10%;">Website</th>
+                                <th style="width:10%;">Note</th>
+                                <th style="width:10%;">Distributor</th>
+                                <th style="width:10%;">Brand</th>
+                                <th style="width:10%;">Product</th>
+                                <th>Remark</th>
+                                <th>Remark</th>
+                            </tr>
+                        </thead>
+                    </table>             
+                </div>
+            </div>
+        </div>
+        <div class="brand-data">
+            <div class="background">
+                <div class="tbheader">
+                    <button type="button" class="btn btn-danger" id="brand-remove">Remove</button>                    
+                </div>
+                <div class="resize_wrapper">
+                    <table id="brand-table" style="width:100%;">
+                        <thead>
+                            <tr>
+                                <th style="width:20px!important;">No</th>
+                                <th style="width:80%!important;">Brand</th>
+                                <th>Remark</th>
+                                <th>Remark</th>
+                            </tr>
+                        </thead>
+                    </table>             
+                </div>
+            </div>
+        </div>
+        <div class="product-data">
+            <div class="background">
+                <div class="tbheader">
+                    <button type="button" class="btn btn-danger" id="product-remove">Remove</button>                    
+                </div>
+                <div class="resize_wrapper">
+                    <table id="product-table">
+                        <thead>
+                            <tr>
+                                <th style="width:20px!important;">No</th>
+                                <th style="width:80%!important;">Product</th>
+                                <th>Remark</th>
+                                <th>Remark</th>
+                            </tr>
+                        </thead>
+                    </table>             
+                </div>
+            </div>
+        </div>       
+
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+            
+                <!-- Modal content-->
+                <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Error</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Please input empty field</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+                </div>
+                
+            </div>
+        </div>
+
+        <div class="modal fade" id="myErrorModal" role="dialog">
+            <div class="modal-dialog">
+            
+                <!-- Modal content-->
+                <div class="modal-content">
+                <div class="modal-header">                    
+                    <h4 class="modal-title">Aston Technologies Global View</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Can not connect to the database. Please change the setting.txt.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+                </div>
+                
+            </div>
+        </div>
+
+
+        <div class="modal fade" id="myModalProduct" role="dialog">
+            <div class="modal-dialog">
+                <form data-toggle="validator" role="form">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Update Product</h4>
+                    </div>
+                    <div class="modal-body">
+                        
+                            <table width='100%' height='100%' cellspacing=0 cellpadding=0>
+                                <tr style="height:45px;">
+                                    <td width='8%' class="title">Product</td>
+                                    <td width='80%'>
+                                        <input type="text" id="update-product" name="update-product" required>
+                                        <input type="hidden" id="update-product-id" name="update-product-id">
+                                    </td>
+                                </tr>                    
+                                <tr></tr>
+                            </table>                    
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" id="update-product-btn">SAVE</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
+                    </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="modal fade" id="myModalBrand" role="dialog">
+            <div class="modal-dialog">
+                <form data-toggle="validator" role="form" action="#">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Update Brand</h4>
+                    </div>
+                    <div class="modal-body">
+                        
+                            <table width='100%' height='100%' cellspacing=0 cellpadding=0>
+                                <tr style="height:45px;">
+                                    <td width='8%' class="title">Brand</td>
+                                    <td width='80%'>
+                                        <input type="text" id="update-brand" name="update-brand" required>
+                                        <input type="hidden" id="update-brand-id" name="update-brand-id">
+                                    </td>
+                                </tr>                    
+                                <tr></tr>
+                            </table>                    
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" id="update-brand-btn">SAVE</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
+                    </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="modal fade" id="myErrorSaveModal" role="dialog">
+            <div class="modal-dialog">
+                <form data-toggle="validator" role="form" action="#">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Error</h4>
+                    </div>
+                    <div class="modal-body">
+                        This item cannot be saved. There is the same as this item.
+                    </div>
+                    <div class="modal-footer">                        
+                        <button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
+                    </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="modal fade" id="myModalVendor" role="dialog">
+            <div class="modal-dialog">
+                <form data-toggle="validator" role="form" action="#">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Update Vendor</h4>
+                    </div>
+                    <div class="modal-body">
+                        <table width='100%' height='100%' cellspacing=0 cellpadding=0>
+                            <tr style="height:45px;">
+                                <td width='8%' class="title">Vendor</td>
+                                <td width='80%'>
+                                    <input type="text" id="update-vendor" name="update-vendor" required>
+                                    <input type="hidden" id="update-vendor-id" name="update-vendor-id">
+                                </td>
+                            </tr>    
+                            <tr style="height:45px;">
+                                <td width='8%' class="title">Contact</td>
+                                <td width='80%'>
+                                    <input type="text" id="update-contact" name="update-contact" required>                                    
+                                </td>
+                            </tr>
+                            <tr style="height:45px;">
+                                <td width='8%' class="title">Email</td>
+                                <td width='80%'>
+                                    <input type="text" id="update-email" name="update-email" required>                                    
+                                </td>
+                            </tr>
+                            <tr style="height:45px;">
+                                <td width='8%' class="title">Phone</td>
+                                <td width='80%'>
+                                    <input type="text" id="update-phone" name="update-phone" required>                                    
+                                </td>
+                            </tr>
+                            <tr style="height:45px;">
+                                <td width='8%' class="title">Website</td>
+                                <td width='80%'>
+                                    <input type="text" id="update-website" name="update-website" required>                                    
+                                </td>
+                            </tr>
+                            <tr style="height:45px;">
+                                <td width='8%' class="title">Note</td>
+                                <td width='80%'>
+                                    <input type="text" id="update-note" name="update-note" required>                                    
+                                </td>
+                            </tr>
+                            <tr style="height:45px;">
+                                <td width='8%' class="title">Distributor</td>
+                                <td width='80%'>
+                                    <select class="browser-default custom-select" id="update-vendor-distributor">
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">No</option>                                
+                                    </select>                                
+                                </td>
+                            </tr>
+
+                            <tr style="height:45px;">
+                                <td width='8%' class="title">Brand</td>
+                                <td width='80%'>
+                                    <select multiple data-style="rounded-pill px-4 py-3 shadow-sm " class="selectpicker w-100" id="update-vendor-brand" style="color:#000!important">
+                                    </select>
+                                    <!-- <select class="browser-default custom-select" id="update-vendor-brand">
+                                                                
+                                    </select>                                 -->
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td width='8%' class="title">Product</td>
+                                <td width='80%'>
+                                    <select multiple data-style="rounded-pill px-4 py-3 shadow-sm " class="selectpicker w-100" id="update-vendor-product" style="color:#000!important">
+                                    </select>
+                                    <!-- <select class="browser-default custom-select" id="update-vendor-product">
+                                                                    
+                                    </select>                                 -->
+                                </td>
+                            </tr>
+                           
+                            <tr></tr>
+                        </table>  
+                             
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" id="update-vendor-btn">SAVE</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
+                    </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </body>    
+    <script>window.$ = window.jQuery = require('jquery');</script>
+    <script language="javascript" src="node_modules/bootstrap3/dist/js/bootstrap.min.js"></script>   
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.16/sl-1.2.5/datatables.min.css">
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/sl-1.2.5/datatables.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://gyrocode.github.io/jquery-datatables-checkboxes/1.2.10/css/dataTables.checkboxes.css">
+    <script type="text/javascript" src="https://gyrocode.github.io/jquery-datatables-checkboxes/1.2.10/js/dataTables.checkboxes.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
+    
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/sweetalert2/1.3.3/sweetalert2.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/sweetalert2/0.4.5/sweetalert2.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/sweetalert2/1.3.3/sweetalert2.min.js"></script>
+
+    <script>
+        function filterFunction()
+        {            
+            var product = $('#product').val()
+            var brand = $('#brand').val()
+            var distributor = $('#distributor').val()
+            var vendor = $('#vendor').val()
+            var contact = $('#contact').val()
+            var email = $('#email').val()
+            var phone = $('#phone').val()
+            var website = $('#website').val()
+            var note = $('#note').val()
+
+            var table = $('#data-table').DataTable();
+            if(vendor != null)
+                table.column("1").search(vendor,true,true).draw();
+            if(contact != null)
+                table.column("2").search(contact,true,true).draw();
+            if(email != null)
+                table.column("3").search(email,true,true).draw();
+            if(phone != null)
+                table.column("4").search(phone,true,true).draw();
+            if(website != null)
+                table.column("5").search(website,true,true).draw();
+            if(note != null)
+                table.column("6").search(note,true,true).draw();
+            if(distributor != null)
+                table.column("7").search(distributor,true,true).draw();
+            if(brand != null)
+                table.column("8").search(brand,true,true).draw();
+            if(product != null)
+                table.column("9").search(product,true,true).draw();
+        }
+
+        function filterVFunction()
+        {            
+            var product = $('#vproduct option:selected')
+            var pp = []
+            for(var i=0; i<product.length; i++)
+                pp.push(product[i].text)
+
+            var brand = $('#vbrand option:selected')
+            var bb1 = []
+            for(var i=0; i<brand.length; i++)
+                bb1.push(brand[i].text)
+
+            var distributor = $('#vdistributor').val()
+            var vendor = $('#vvendor').val()
+            var contact = $('#vcontact').val()
+            var email = $('#vemail').val()
+            var phone = $('#vphone').val()
+            var website = $('#vwebsite').val()
+            var note = $('#vnote').val()
+
+            var table = $('#vendor-table').DataTable();
+            if(vendor != null)
+                table.column("1").search(vendor,true,true).draw();
+            if(contact != null)
+                table.column("2").search(contact,true,true).draw();
+            if(email != null)
+                table.column("3").search(email,true,true).draw();
+            if(phone != null)
+                table.column("4").search(phone,true,true).draw();
+            if(website != null)
+                table.column("5").search(website,true,true).draw();
+            if(note != null)
+                table.column("6").search(note,true,true).draw();
+            if(distributor != null)
+                table.column("7").search(distributor,true,true).draw();
+            // if(brand != null)
+            //     table.column("8").search(bb1.join("|"),true,true).draw();
+            // if(product != null)
+            //     table.column("9").search(pp.join("|"),true,true).draw();
+        }
+
+        function filterBrandFunction()
+        {            
+            
+            var brand = $('#brand-input').val()
+            
+            var table = $('#brand-table').DataTable();
+            if(brand != null)
+                table.column("1").search(brand,true,true).draw();
+        }
+
+        function filterProductFunction()
+        {            
+            
+            var product = $('#product-input').val()
+            
+            var table = $('#product-table').DataTable();
+            if(product != null)
+                table.column("1").search(product,true,true).draw();
+        }
+
+        $(document).ready(function(){   
+            
+            $('.selectpicker').selectpicker();            
+
+            const {ipcRenderer} = require('electron');
+            const remote = require('electron').remote;
+            var hideFlag = false            
+
+            var product = $('#product-input').val()            
+            
+            $(".nav-tabs a").click(function(){
+                $(this).tab('show');
+                if(this.name == "product") {
+                    $('.table-data').css('display','none')
+                    $('.vendor-data').css('display','none')
+                    $('.brand-data').css('display','none')
+                    $('.product-data').css('display','block')
+                }  
+                if(this.name == "brand") {
+                    $('.table-data').css('display','none')
+                    $('.vendor-data').css('display','none')
+                    $('.brand-data').css('display','block')
+                    $('.product-data').css('display','none')
+                }                    
+                if(this.name == "browse") {
+                    $('.table-data').css('display','block')
+                    $('.vendor-data').css('display','none')
+                    $('.brand-data').css('display','none')
+                    $('.product-data').css('display','none')
+                }
+
+                if(this.name == "vendor")
+                {
+                    $('.table-data').css('display','none')
+                    $('.vendor-data').css('display','block')
+                    $('.brand-data').css('display','none')
+                    $('.product-data').css('display','none')
+                }
+               
+            });
+
+            ipcRenderer.on('datatable_data',function(e,data){ 
+                
+                var table = $('#data-table').DataTable();
+                table.rows().remove().draw();
+                if(data.length != 0) {
+                    for(var i=0; i<data.length; i++) {
+                        var _brand = []
+                        var _product = []
+                        
+                        var brand = data[i].brand.split(",")
+                        for(var k=0; k<brand.length; k++)
+                            if(_brand.indexOf(brand[k]) == -1)
+                                _brand.push(brand[k])
+
+                        if(data[i].product != null)
+                        {
+                            var product = data[i].product.split(",")
+                            for(var k=0; k<product.length; k++)
+                                if(_product.indexOf(product[k]) == -1)
+                                _product.push(product[k])
+                        }
+                        
+
+
+                        table.rows.add([{
+                            noIndex: data[i].id,
+                            vendor_name: data[i].vendor_name,
+                            contact_name: data[i].contact_name,
+                            email_address: data[i].email_address,
+                            telephone_number: data[i].telephone_number,
+                            website: data[i].website,
+                            note: data[i].note,
+                            official_distributor: data[i].official_distributor,
+                            brand: _brand.join(","),
+                            type_of_product: _product.join(","),
+                        }])
+                    }
+                    table.draw();
+                }
+
+                var vtable = $('#vendor-table').DataTable();
+                vtable.rows().remove().draw();
+                if(data.length != 0) {
+                    for(var i=0; i<data.length; i++) {
+                        var _brand1 = []
+                        var _product1 = []
+                        
+                        var brand = data[i].brand.split(",")
+                        for(var k=0; k<brand.length; k++)
+                            if(_brand1.indexOf(brand[k]) == -1)
+                                _brand1.push(brand[k])
+
+                        if(data[i].product != null)
+                        {
+                            var product = data[i].product.split(",")
+                            for(var k=0; k<product.length; k++)
+                                if(_product1.indexOf(product[k]) == -1)
+                                _product1.push(product[k])
+                        }
+                        
+                        vtable.rows.add([{
+                            noIndex: data[i].id,
+                            vendor_name: data[i].vendor_name,
+                            contact_name: data[i].contact_name,
+                            email_address: data[i].email_address,
+                            telephone_number: data[i].telephone_number,
+                            website: data[i].website,
+                            note: data[i].note,
+                            official_distributor: data[i].official_distributor,
+                            brand: _brand1.join(","),
+                            type_of_product: _product1.join(","),
+                        }])
+                    }
+                    vtable.draw();
+                }
+
+                filterVFunction()
+                filterFunction()
+            });
+
+            ipcRenderer.on('brand',function(e,data){ 
+                
+                $("#brand").find('option').remove();                
+                $("#brand").append(new Option("Please select the Brand",""))
+                for(var i=0; i<data.length; i++)
+                {
+                    $("#brand").append(new Option(data[i].brand,data[i].brand))
+                }
+
+                $("#vbrand").find('option').remove();                                
+                for(var i=0; i<data.length; i++)
+                {
+                    $("#vbrand").append(new Option(data[i].brand,data[i].id))
+                }
+                $('#vbrand').selectpicker("refresh");
+                $("#update-vendor-brand").find('option').remove();                              
+                for(var i=0; i<data.length; i++)
+                {
+                    $("#update-vendor-brand").append(new Option(data[i].brand,data[i].id))
+                }
+                $('#update-vendor-brand').selectpicker("refresh");
+
+                var table = $('#brand-table').DataTable();
+                table.rows().remove().draw();
+                if(data.length != 0) {
+                    for(var i=0; i<data.length; i++) {
+                        table.rows.add([{
+                            noIndex: data[i].id,
+                            Name: data[i].brand,                            
+                        }])
+                    }
+                    table.draw();
+                }
+            });
+            
+            ipcRenderer.on('Error',function(e,data){
+                
+                if(data === "Empty") {
+                    ipcRenderer.send('read_data')                    
+                } else {
+                    $('#myErrorModal').modal('show');
+                }                
+                //var window = remote.getCurrentWindow();
+                //window.close();
+            })
+            
+            
+
+            ipcRenderer.on('product',function(e,data){                 
+                $("#product").find('option').remove();                
+                $("#product").append(new Option("Please select the Product",""))
+                for(var i=0; i<data.length; i++)
+                {
+                    $("#product").append(new Option(data[i].product,data[i].product))
+                }
+
+                $("#vproduct").find('option').remove();                
+                for(var i=0; i<data.length; i++)
+                {
+                    $("#vproduct").append(new Option(data[i].product,data[i].id))
+                }
+                $('#vproduct').selectpicker("refresh");
+
+                // $("#update-vendor-product").find('option').remove();                
+                // $("#update-vendor-product").append(new Option("Please select the Product",""))         
+                // for(var i=0; i<data.length; i++)
+                // {
+                //     $("#update-vendor-product").append(new Option(data[i].product,data[i].id))
+                // }
+
+                
+                $("#update-vendor-product").find('option').remove();
+                for(var i=0; i<data.length; i++)
+                {
+                    $("#update-vendor-product").append(new Option(data[i].product,data[i].id))
+                }
+                $('#update-vendor-product').selectpicker("refresh");
+
+                var table = $('#product-table').DataTable();
+                table.rows().remove().draw();
+                if(data.length != 0) {
+                    for(var i=0; i<data.length; i++) {
+                        table.rows.add([{
+                            noIndex: data[i].id,
+                            Name: data[i].product,                            
+                        }])
+                    }
+                    table.draw();
+                }
+            });
+
+            var table = $('#data-table').DataTable({
+                bLengthChange: false,
+                paging: false,
+                bFilter: true,
+                searching: true,
+                //deferRender:    true,                
+                scrollY:      $('.table-data').height()-90,
+                scrollCollapse: true,
+                scroller:       true,                
+                select: {
+                    'style': 'multi'
+                },
+                
+                columnDefs: [
+                    {
+                        'targets': 0,
+                        'checkboxes': {
+                            'selectRow': true
+                        }
+                    }
+                ],
+                columns: [ 
+                    { data : "noIndex" },
+                    { data : "vendor_name" },
+                    { data : "contact_name" },
+                    { data : "email_address" },
+                    { data : "telephone_number" },
+                    { data : "website" },        
+                    { data : "note" },        
+                    { data : "official_distributor" },
+                    { data : "brand" },
+                    { data : "type_of_product" }
+                ]
+            }); 
+
+            var vtable = $('#vendor-table').DataTable({
+                bLengthChange: false,
+                paging: false,
+                bFilter: true,
+                searching: true,
+                //deferRender:    true,                
+                scrollY:      $('.vendor-data').height()-90,
+                scrollCollapse: true,     
+                scroller:       true,               
+                select: {
+                    'style': 'multi'
+                },
+                
+                columnDefs: [
+                    {
+                        'targets': 0,
+                        'checkboxes': {
+                            'selectRow': true
+                        }
+                    }
+                ],
+                columns: [ 
+                    { data : "noIndex" },
+                    { data : "vendor_name" },
+                    { data : "contact_name" },
+                    { data : "email_address" },
+                    { data : "telephone_number" },
+                    { data : "website" },        
+                    { data : "note" },        
+                    { data : "official_distributor" },
+                    { data : "brand" },
+                    { data : "type_of_product" },
+                    {
+                        data: "Remark1",
+                        defaultContent: '<a href="#" class="remove">Edit</a>',                     
+                    }, 
+                    {
+                        data: "Remark2",
+                        defaultContent: '<a href="#" class="remove">Delete</a>',                     
+                    },   
+                ]
+            });
+
+            $('#vendor-table').on( 'click', 'tbody td', function (e) {
+                var ptable = $('#vendor-table').DataTable()                
+                var rowIndex = ptable.row($(this)).index()
+                var data = ptable.row($(this)).data()
+                console.log(data);
+                if ( $(this).index() == 10 ) {                    
+                    $('#update-vendor-id').val(data.noIndex)
+                    $('#update-vendor').val(data.vendor_name)
+                    $('#update-contact').val(data.contact_name)
+                    $('#update-email').val(data.email_address)
+                    $('#update-phone').val(data.telephone_number)
+                    $('#update-website').val(data.website)
+                    $('#update-note').val(data.note)
+                    $('#update-vendor-distributor').val(data.official_distributor)
+
+                    //$('#update-vendor-brand').selectpicker('val', [1,3,4]);
+                    //$('select[id=update-vendor-brand]').val(data.brand);
+                    //$('#update-vendor-brand').selectpicker('refresh')
+                    $('#update-vendor-brand').val('')
+                    $("#update-vendor-brand option").filter(function() {             
+                        var brands = data.brand.split(",")
+                        var flag = false
+                        for(var i=0; i<brands.length; i++)
+                            if($(this).text() == brands[i])
+                                flag = true
+                        return flag
+                    }).prop('selected', true);
+                    $('#update-vendor-brand').selectpicker('refresh')
+
+                    $('#update-vendor-product').val('')
+                    $("#update-vendor-product option").filter(function() {
+                        var products = data.type_of_product.split(",")
+                        var flag = false
+                        for(var i=0; i<products.length; i++)
+                            if($(this).text() == products[i])
+                                flag = true
+                        return flag  
+                        //return $(this).text() == data.type_of_product;
+                    }).prop('selected', true);
+                    $('#update-vendor-product').selectpicker('refresh')
+
+                    $('#myModalVendor').modal('show');
+                    return false;
+                } else if($(this).index() == 11) {
+                    //delete
+                    swal({
+                        title: 'Are you sure to delete?',
+                        text: "",
+                        type: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'OK',
+                        closeOnConfirm: false
+                    }).then(function(isConfirm) {
+                        if (isConfirm) {
+                            var array = []
+                            array.push(data)
+                            ipcRenderer.send('delete_vendor',array)
+
+                            swal("Deleted!", "", "success");
+                        }
+                    })   
+                    
+                } else {
+                    return true;
+                }
+            } );
+
+            var btable = $('#brand-table').DataTable({                
+                bLengthChange: false,
+                paging: false,
+                bFilter: true,
+                searching: true,
+                deferRender:    true,                
+                scrollY:      $('.brand-data').height()-90,
+                scrollCollapse: true,
+                scroller:       true,
+                select: {
+                    'style': 'multi'
+                },
+                
+                columnDefs: [
+                    {
+                        'targets': 0,
+                        'checkboxes': {
+                            'selectRow': true
+                        }
+                    }
+                ],
+                columns: [ 
+                    { data : "noIndex" },
+                    { data : "Name" },   
+                    {
+                        data: "Remark1",
+                        defaultContent: '<a href="#" class="remove">Edit</a>',                     
+                    }, 
+                    {
+                        data: "Remark2",
+                        defaultContent: '<a href="#" class="remove">Delete</a>',                     
+                    },                   
+                ]
+            }); 
+            
+            var ptable = $('#product-table').DataTable({                
+                bLengthChange: false,
+                paging: false,
+                bFilter: false,
+                searching: true,
+                deferRender:    true,                
+                scrollY:      $('.product-data').height()-90,
+                scrollCollapse: true,
+                scroller:       true,       
+                select: {
+                    'style': 'multi'
+                },         
+                columnDefs: [
+                    {
+                        'targets': 0,
+                        'checkboxes': {
+                            'selectRow': true
+                        }
+                    }
+                ],
+                columns: [ 
+                    { data : "noIndex" },
+                    { data : "Name" },
+                    {
+                        data: "Remark1",
+                        defaultContent: '<a href="#" class="remove">Edit</a>',                     
+                    }, 
+                    {
+                        data: "Remark2",
+                        defaultContent: '<a href="#" class="remove">Delete</a>',                     
+                    },             
+                ]
+            }); 
+
+            $('#product-table').on( 'click', 'tbody td', function (e) {
+                var ptable = $('#product-table').DataTable()
+                // var array = ptable.rows('.selected').data()
+                // if(array.length > 0)
+                //     ipcRenderer.send('delete_product',array)
+                var rowIndex = ptable.row($(this)).index()
+                var data = ptable.row($(this)).data()
+                if ( $(this).index() == 2 ) {
+                    //peditor.bubble( this );
+                    $('#update-product').val(data.Name)
+                    $('#update-product-id').val(data.noIndex)
+                    $('#myModalProduct').modal('show');
+                    return false;
+                } else if($(this).index() == 3) {
+                    //delete
+                    swal({
+                        title: 'Are you sure to delete?',
+                        text: "",
+                        type: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'OK',
+                        closeOnConfirm: false
+                    }).then(function(isConfirm) {
+                        if (isConfirm) {
+                            var array = []
+                            array.push(data)
+                            ipcRenderer.send('delete_product',array)
+
+                            swal("Deleted!", "", "success");
+                        }
+                    })   
+
+                    
+                } else {
+                    return true;
+                }
+            } );
+
+            $('#update-product-btn').on('click', function() {                
+                var param = {
+                    id: $('#update-product-id').val(),
+                    Name: $('#update-product').val()
+                }
+                ipcRenderer.send('update_product',param)
+                $('#myModalProduct').modal('hide');
+                return false;
+            })
+
+            $('#brand-table').on( 'click', 'tbody td', function (e) {
+                var btable = $('#brand-table').DataTable()
+                var rowIndex = btable.row($(this)).index()
+                var data = btable.row($(this)).data()
+                if ( $(this).index() == 2 ) {
+                    $('#update-brand').val(data.Name)
+                    $('#update-brand-id').val(data.noIndex)
+                    $('#myModalBrand').modal('show');
+                    return false;
+                } else if($(this).index() == 3) {
+                    //delete
+                    swal({
+                        title: 'Are you sure to delete?',
+                        text: "",
+                        type: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'OK',
+                        closeOnConfirm: false
+                    }).then(function(isConfirm) {
+                        if (isConfirm) {
+                            var array = []
+                            array.push(data)
+                            ipcRenderer.send('delete_brand',array)
+                            swal("Deleted!", "", "success");
+                        }
+                    })   
+                    
+                } else {
+                    return true;
+                }
+            } );
+
+            $('#update-brand-btn').on('click', function() {                
+                var param = {
+                    id: $('#update-brand-id').val(),
+                    Name: $('#update-brand').val()
+                }
+                ipcRenderer.send('update_brand',param)
+                $('#myModalBrand').modal('hide');
+                return false;
+            })
+
+            $('#update-vendor-btn').on('click', function() {                
+                var param = {
+                    id: $('#update-vendor-id').val(),
+                    vendor: $('#update-vendor').val(),
+                    contact: $('#update-contact').val(),
+                    email: $('#update-email').val(),
+                    phone: $('#update-phone').val(),
+                    website: $('#update-website').val(),
+                    note: $('#update-note').val(),
+                    distributor: $('#update-vendor-distributor').val(),
+                    brand: $('#update-vendor-brand').val().join(','),
+                    product: $('#update-vendor-product').val().join(','),
+                }
+                ipcRenderer.send('update_vendor',param)
+                $('#myModalVendor').modal('hide');
+                return false;
+            })
+
+
+            //Hide Search
+            $('.sub-menu a').on('click', function() {
+                hideFlag = !hideFlag;
+                if(hideFlag) {
+                    $('.tab-content').css('display','none');
+                    $('.sub-menu a').text('SHOW FILTER')
+                    $('.table-data').css('height','calc(100% - 93px)');
+                    $('.vendor-data').css('height','calc(100% - 93px)');
+                    $('.brand-data').css('height','calc(100% - 93px)');
+                    $('.product-data').css('height','calc(100% - 93px)');
+                } else {
+                    $('.tab-content').css('display','block')
+                    $('.sub-menu a').text('HIDE FILTER')
+                    $('.table-data').css('height','calc(100% - 243px)');
+                    $('.vendor-data').css('height','calc(100% - 243px)');
+                    $('.brand-data').css('height','calc(100% - 243px)');                    
+                    $('.product-data').css('height','calc(100% - 243px)'); 
+                }
+                $('div.dataTables_scrollBody', table.table().container()).css( {
+                    maxHeight: $('.table-data').height()-120,
+                    height: $('.table-data').height()-120,                    
+                } );
+
+                $('div.dataTables_scrollBody', vtable.table().container()).css( {
+                    maxHeight: $('.vendor-data').height()-120,
+                    height: $('.vendor-data').height()-120,
+                } );
+
+                $('div.dataTables_scrollBody', btable.table().container()).css( {                    
+                    maxHeight: $('.brand-data').height()-120,
+                    height: $('.brand-data').height()-120
+                } );
+
+                $('div.dataTables_scrollBody', ptable.table().container()).css( {                    
+                    maxHeight: $('.product-data').height()-120,
+                    height: $('.product-data').height()-120
+                } );
+            })      
+            
+            $('#brand-btn').on('click', function() {
+                var brand = $('#brand-input').val()
+                if(brand == "")
+                {
+                    $('#myModal').modal('show');
+                    return;
+                }
+                
+                var btable = $('#brand-table').DataTable()
+                var total = btable.rows().data()
+                var flag = false
+                for(var i=0; i<total.length; i++)
+                {
+                    if(total[i].Name == brand)
+                        flag = true
+                }
+                if(!flag)
+                {                    
+                    ipcRenderer.send('save_brand',brand)
+                    $('#brand-input').val('')
+                    filterBrandFunction()
+                } else {
+                    $('#myErrorSaveModal').modal('show')
+                }
+            })
+
+            $('#brand-remove').on('click', function() {
+                swal({
+                    title: 'Are you sure to delete?',
+                    text: "",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'OK',
+                    closeOnConfirm: false
+                }).then(function(isConfirm) {
+                    if (isConfirm) {
+                        var btable = $('#brand-table').DataTable()
+                        var array = btable.rows('.selected').data()
+                        if(array.length > 0)
+                            ipcRenderer.send('delete_brand',array)
+
+                        swal("Deleted!", "", "success");
+                    }
+                })                
+            })
+
+            $('#product-btn').on('click', function() {
+                var product = $('#product-input').val()                
+                if(product == "")
+                {
+                    $('#myModal').modal('show');
+                    return;
+                }
+                
+                var btable = $('#product-table').DataTable()
+
+                var total = btable.rows().data()
+                var flag = false
+                for(var i=0; i<total.length; i++)
+                {
+                    if(total[i].Name == product)
+                        flag = true
+                }
+                if(!flag)
+                //if(btable.rows( { search: 'applied' } )[0].length == 0)
+                {
+                    
+                    ipcRenderer.send('save_product',product)
+                    $('#product-input').val('')
+                    filterProductFunction()
+                } else {
+                    $('#myErrorSaveModal').modal('show')
+                }                
+            })
+
+            $('#product-remove').on('click', function() {
+                swal({
+                    title: 'Are you sure to delete?',
+                    text: "",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'OK',
+                    closeOnConfirm: false
+                }).then(function(isConfirm) {
+                    if (isConfirm) {
+                        var btable = $('#product-table').DataTable()
+                        var array = btable.rows('.selected').data()
+                        if(array.length > 0)
+                            ipcRenderer.send('delete_product',array)
+
+                        swal("Deleted!", "", "success");
+                    }
+                })                   
+            })
+
+            $('#vendor-remove').on('click', function() {
+
+                swal({
+                    title: 'Are you sure to delete?',
+                    text: "",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'OK',
+                    closeOnConfirm: false
+                }).then(function(isConfirm) {
+                    if (isConfirm) {
+                        var btable = $('#vendor-table').DataTable()
+                        var array = btable.rows('.selected').data()
+                        if(array.length > 0)
+                            ipcRenderer.send('delete_vendor',array)
+
+                        swal("Deleted!", "", "success");
+                    }
+                })  
+            })
+            
+            $('#btn-close').on('click', function() {
+                var window = remote.getCurrentWindow();
+                window.close();
+            })
+
+            $("#myErrorModal").on("hidden.bs.modal", function () {
+                var window = remote.getCurrentWindow();
+                window.close();
+            });
+
+            $('#email-btn').on('click', function() {
+                
+                var table = $('#data-table').DataTable();
+                var array = table.rows('.selected').data()
+                if(array.length > 0) {
+                    var tmp = ""
+                    for(var i=0; i<array.length; i++)
+                    {
+                        tmp = tmp + array[i].email_address + "; "                        
+                    }
+                    var email = tmp.trim();
+                    var subject = "Request for quotation";
+                    var emailBody = "";
+                    window.location.href = 'mailto:?bcc=' + email + '&subject=' + subject;
+                }
+
+            })
+
+            $('#vendor-btn').on('click', function() {                        
+                var product = $('#vproduct').val()
+                var brand = $('#vbrand').val()
+                var distributor = $('#vdistributor').val()
+                var vendor = $('#vvendor').val()
+                var contact = $('#vcontact').val()
+                var email = $('#vemail').val()
+                var phone = $('#vphone').val()
+                var website = $('#vwebsite').val()
+                var note = $('#vnote').val()  
+
+                if(brand == "" || distributor == "" || vendor == "" || email == "" ||website == "")
+                {
+                    $('#myModal').modal('show');
+                    return;
+                }
+
+                var btable = $('#vendor-table').DataTable()
+
+                var total = btable.rows().data()
+                var flag = false
+                for(var i=0; i<total.length; i++)
+                {
+                    if(total[i].contact_name == contact && total[i].vendor_name == vendor  && total[i].website == website 
+                    && total[i].telephone_number == phone && total[i].email_address == email  && total[i].note == note)
+                        flag = true
+                }
+
+                if(!flag)
+                //if(btable.rows( { search: 'applied' } )[0].length == 0)
+                {
+                    var arr = []
+                    arr.push([vendor,contact,email,phone,website,note,distributor,brand.join(','),product.join(',')])
+
+                    // var item = [
+                    //     vendor,contact,email,phone,website,note,distributor,parseInt(brand),product
+                    // ]                    
+                    
+                                    
+                    $('#vvendor').val('')
+                    $('#vcontact').val('')
+                    $('#vemail').val('')
+                    $('#vphone').val('')
+                    $('#vwebsite').val('')
+                    $('#vnote').val('')
+
+                    $('#vproduct').val('')
+                    $('#vbrand').val('')
+                    filterVFunction()
+
+                    ipcRenderer.send('save_vendor',arr)
+                } else {
+                    $('#myErrorSaveModal').modal('show')
+                }
+            })
+
+
+            $('.brand-data').css('display','none')
+            $('.vendor-data').css('display','none')
+            $('.product-data').css('display','none')
+
+
+            $('#update-product').keypress(function (event) {
+                if (event.keyCode === 10 || event.keyCode === 13) {
+                    event.preventDefault();
+                }
+            });
+
+            $('#update-brand').keypress(function (event) {
+                if (event.keyCode === 10 || event.keyCode === 13) {
+                    event.preventDefault();
+                }
+            });
+        });
+    </script>
+</html>

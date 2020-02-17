@@ -1,0 +1,4 @@
+server:188.213.28.170
+user:aston
+password:aston
+database:aston

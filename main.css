@@ -1,0 +1,302 @@
+html, body {
+    background-color: #333;
+    height: 100%;
+    min-width: 800px;
+    min-height: 600px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 13px;
+}
+.header {
+    background: #263238;
+    height: 41px;
+}
+
+button.close {
+    padding: 10px;
+    opacity: 1;
+    color: #a8adaf;
+    font-size: 15px;          
+}
+
+.close:focus, .close:hover {
+    opacity: 1;
+    color: #fff;            
+}
+
+.close:hover {
+    background: #f00
+}
+
+.header .title {
+    color: #ffcfb6;
+    margin: auto;
+    width: 260px;
+    font-size: 18px;
+    padding-top: 8px;
+}
+
+.header .maxminclose-btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid #64ffda;            
+    color: #fff;
+}
+
+.nav-tabs>li>a {
+    border-radius: 0;
+    border: none;
+    color: #afb5b9;
+    text-transform: uppercase;
+}
+
+.nav-tabs>li>a:hover {
+    border: none;
+    background-color: transparent;
+}
+
+.nav {
+    background-color: #37474f;            
+}
+
+.nav-tabs {
+    border: none;
+}
+
+.tab-content .title {
+    text-align: right;
+    padding-right: 10px;
+}
+
+.sub-menu {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+.sub-menu a {
+    color: #6ecefa;
+    cursor: pointer;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+.menubar {
+    position: relative;
+}
+
+.tab-content {
+    color: #fff;            
+    height: 150px;
+}
+
+.table-data, .brand-data, .product-data, .vendor-data {
+    border: 1px solid #aaa;
+    padding: 2px;
+    color: #fff;
+    color: #000;
+    margin: 5px;
+    height: calc(100% - 243px); 
+    overflow-y: hidden;
+    min-height: 440px;
+}
+
+/* #data-table,#vendor-table {
+    height: calc(100% - 50px);
+} */
+
+#data-table_wrapper {
+    height: 100%;
+}
+
+.resize_wrapper {
+    padding:5px;
+    /* height: calc(100% - 40px); */
+    height: calc(100%);
+    min-height: 400px;
+    background: #fff;
+    font-size: 13px;
+    overflow-y: auto;
+}
+
+.dataTables_wrapper .dataTables_paginate {
+    padding-top: 0px;
+}
+
+.dataTables_wrapper .dataTables_info {
+    padding-top: 7px;
+    padding-left: 10px;
+}
+
+.tbheader {
+    height: 40px;
+    text-align: right;
+    color:#fff;
+    padding-top: 3px;
+    background: #333;
+}
+
+.btn-default {
+    background-color: transparent;
+    color: #fff;
+    border: none;
+}
+
+.background {
+    height: 100%;
+    background: #fff;
+}
+
+.tab-pane {
+    width: 100%;
+    height: 100%;
+}
+
+select {
+    color: #fff;
+    width: 95%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #4c4c4c;
+}
+
+option {
+    color: #000;
+}
+
+input {
+    color: #fff;
+    width: 95%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #4c4c4c;
+}
+
+input:focus, input:active, select:focus, select:active {
+    border-bottom: 1px solid #4c4c4c;
+    outline-offset: 0;
+    outline: none;
+}
+
+#data-table_filter, #brand-table_filter, #product-table_filter, #vendor-table_filter {
+    display: none;
+}
+
+.dataTables_scrollHeadInner, .dataTable.no-footer {
+    width: 100%!important;
+}
+
+
+.modal-footer .btn-default {
+    border-color: #ccc;
+    color: #333;
+}
+
+table.dataTable thead .sorting {
+    font-size: 12px;
+    font-weight: 100;
+}
+
+#myModalProduct input,#myModalBrand input, #myModalVendor input, #myModalVendor select {
+    color: #000;
+}
+
+.bootstrap-select .bs-ok-default::after {
+    width: 0.3em;
+    height: 0.6em;
+    border-width: 0 0.1em 0.1em 0;
+    transform: rotate(45deg) translateY(0.5rem);
+}
+
+.btn.dropdown-toggle:focus {
+    outline: none !important;
+}
+
+.bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
+    width: 95%!important;
+    height: 20px;
+    padding: 0;
+    color: #fff;
+}
+
+.bootstrap-select>.dropdown-toggle:active, .bootstrap-select>.dropdown-toggle:hover, .bootstrap-select>.dropdown-toggle:focus, .bootstrap-select>.dropdown-toggle, .bootstrap-select>.dropdown-toggle.bs-placeholder, .bootstrap-select>.dropdown-toggle.bs-placeholder:active, .bootstrap-select>.dropdown-toggle.bs-placeholder:focus, .bootstrap-select>.dropdown-toggle.bs-placeholder:hover {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #4c4c4c;
+    color: #fff;
+}
+
+.bootstrap-select>.dropdown-toggle, .bootstrap-select>.dropdown-toggle:active, .bootstrap-select>.dropdown-toggle:focus, .bootstrap-select>.dropdown-toggle:hover, .bootstrap-select>.dropdown-toggle.bs-placeholder, .bootstrap-select>.dropdown-toggle.bs-placeholder:active, .bootstrap-select>.dropdown-toggle.bs-placeholder:focus, .bootstrap-select>.dropdown-toggle.bs-placeholder:hover {
+    padding: 0;
+    color: #fff!important;
+    outline: none!important;
+    border-radius: 0;
+}
+
+.dropdown-menu.open {
+    width:100%!important;
+    min-width: 100%!important;
+}
+
+
+table.dataTable tbody th,
+table.dataTable tbody td {
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+table.dataTable tbody th, table.dataTable tbody td {
+    padding: 8px 1px!important;
+}
+
+.show-sweet-alert {
+    width: 400px!important;    
+}
+
+.sweet-alert h2 {
+    font-size: 20px!important;
+    font-weight: 100!important;
+}
+
+.sweet-alert button.styled {
+    width: 120px;
+}
+
+.sweet-spacer {
+    display: none;
+    margin: 0!important;
+}
+
+.sweet-success, .sweet-warning {
+    margin-top: 0!important;
+    margin-bottom: 0!important;
+}
+
+#myModalVendor .bootstrap-select>.dropdown-toggle, #myModalVendor .bootstrap-select>.dropdown-toggle:active, #myModalVendor .bootstrap-select>.dropdown-toggle:focus, #myModalVendor .bootstrap-select>.dropdown-toggle:hover, #myModalVendor .bootstrap-select>.dropdown-toggle.bs-placeholder, #myModalVendor .bootstrap-select>.dropdown-toggle.bs-placeholder:active, #myModalVendor .bootstrap-select>.dropdown-toggle.bs-placeholder:focus, #myModalVendor .bootstrap-select>.dropdown-toggle.bs-placeholder:hover {
+    color: #000!important;
+}
+
+.bootstrap-select .dropdown-toggle .filter-option-inner-inner {
+    padding-left: 5px;
+}
+
+.bootstrap-select .dropdown-toggle .caret {
+    right: 4px!important;
+}
+
+.bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
+    height: unset;
+}
+
+.filter-option {
+    white-space: normal;
+    overflow: hidden;
+}
